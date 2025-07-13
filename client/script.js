@@ -1,5 +1,5 @@
 /***** CONFIG *****/
-const API = "https://todo-fullstack-pro.onrender.com"; // 👉 change to Render URL after deploy
+const API = "https://todo-fullstack-pro.onrender.com"; // ✅ no trailing slash
 
 /***** DOM SHORTCUTS *****/
 const form = document.getElementById("todo-form");
@@ -12,7 +12,6 @@ form.addEventListener("submit", async (e) => {
   const task = input.value.trim();
   if (!task) return;
 
-  // POST /todos
   await fetch(`${API}/todos`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -25,7 +24,6 @@ form.addEventListener("submit", async (e) => {
 
 /***** RENDER UI *****/
 async function loadTodos() {
-  // GET /todos
   const todos = await fetch(`${API}/todos`).then((r) => r.json());
   todoList.innerHTML = "";
 
@@ -33,16 +31,13 @@ async function loadTodos() {
     const item = document.createElement("div");
     item.className = "todo-item";
 
-    // task text
     const textSpan = document.createElement("span");
     textSpan.textContent = todo.task;
     textSpan.className = "todo-text" + (todo.completed ? " completed" : "");
 
-    /***** BUTTONS *****/
     const buttons = document.createElement("div");
     buttons.className = "todo-buttons";
 
-    // ✅ Toggle
     const toggleBtn = document.createElement("button");
     toggleBtn.textContent = todo.completed ? "Undo" : "Done";
     toggleBtn.className = "toggle";
@@ -55,7 +50,6 @@ async function loadTodos() {
       loadTodos();
     };
 
-    // ✏️ Edit
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
     editBtn.className = "edit";
@@ -71,7 +65,6 @@ async function loadTodos() {
       }
     };
 
-    // 🗑️ Delete
     const delBtn = document.createElement("button");
     delBtn.textContent = "Delete";
     delBtn.className = "delete";
@@ -87,4 +80,4 @@ async function loadTodos() {
 }
 
 /***** INITIAL LOAD *****/
-loadTodos();
+loadTodos(); // ✅ load todos on page load
