@@ -1,5 +1,5 @@
 /***** CONFIG *****/
-const API = "https://todo-fullstack-pro.onrender.com/"; // 👉 change to Render URL after deploy
+const API = "https://todo-fullstack-pro.onrender.com"; // 👉 change to Render URL after deploy
 
 /***** DOM SHORTCUTS *****/
 const form = document.getElementById("todo-form");
